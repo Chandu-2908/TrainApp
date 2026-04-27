@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class TrainConsistApp {
+
+    public static void main(String[] args) {
+
+        // Step 1: Create array of bogie IDs
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
+
+        Scanner sc = new Scanner(System.in);
+
+        // Step 2: Get search key from user
+        System.out.print("Enter Bogie ID to search: ");
+        String key = sc.nextLine();
+
+        // Step 3: Perform Linear Search
+        boolean found = linearSearch(bogieIds, key);
+
+        // Step 4: Display result
+        if (found) {
+            System.out.println("Bogie ID found in the train consist.");
+        } else {
+            System.out.println("Bogie ID NOT found.");
+        }
+
+        sc.close();
+    }
+
+    // Linear Search Method
+    public static boolean linearSearch(String[] arr, String key) {
+
+        for (String id : arr) {
+
+            // Compare using equals()
+            if (id.equals(key)) {
+                return true; // Match found → stop early
+            }
+        }
+
+        return false; // No match found
+    }
+}
