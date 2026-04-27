@@ -1,0 +1,60 @@
+import java.util.*;
+
+public class TrainConsistApp {
+
+    public static void main(String[] args) {
+
+        // Step 1: Create bogie ID array (unsorted example)
+        String[] bogieIds = {"BG309", "BG101", "BG550", "BG205", "BG412"};
+
+        // Step 2: Sort array (Binary Search requirement)
+        Arrays.sort(bogieIds);
+
+        System.out.println("Sorted Bogie IDs:");
+        System.out.println(Arrays.toString(bogieIds));
+
+        Scanner sc = new Scanner(System.in);
+
+        // Step 3: Input search key
+        System.out.print("\nEnter Bogie ID to search: ");
+        String key = sc.nextLine();
+
+        // Step 4: Perform Binary Search
+        boolean found = binarySearch(bogieIds, key);
+
+        // Step 5: Display result
+        if (found) {
+            System.out.println("Bogie ID found using Binary Search.");
+        } else {
+            System.out.println("Bogie ID NOT found.");
+        }
+
+        sc.close();
+    }
+
+    // Binary Search Method
+    public static boolean binarySearch(String[] arr, String key) {
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            int result = key.compareTo(arr[mid]);
+
+            if (result == 0) {
+                return true; // Found
+            } 
+            else if (result < 0) {
+                high = mid - 1; // Search left
+            } 
+            else {
+                low = mid + 1; // Search right
+            }
+        }
+
+        return false; // Not found
+    }
+}
