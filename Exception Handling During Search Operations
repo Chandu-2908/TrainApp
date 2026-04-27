@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class TrainConsistApp {
+
+    public static void main(String[] args) {
+
+        // Example 1: Empty bogie list
+        String[] bogieIds = {};   // Try with empty array
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Bogie ID to search: ");
+        String key = sc.nextLine();
+
+        try {
+            // Step 1: Perform search with validation
+            boolean found = searchBogie(bogieIds, key);
+
+            // Step 2: Display result
+            if (found) {
+                System.out.println("Bogie ID found.");
+            } else {
+                System.out.println("Bogie ID NOT found.");
+            }
+
+        } catch (IllegalStateException e) {
+            // Step 3: Handle fail-fast exception
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        sc.close();
+    }
+
+    // 🔹 Search method with fail-fast validation
+    public static boolean searchBogie(String[] arr, String key) {
+
+        // Step 1: Validate state (Fail-Fast)
+        if (arr == null || arr.length == 0) {
+            throw new IllegalStateException("No bogies available in the train to search.");
+        }
+
+        // Step 2: Perform Linear Search (can also use Binary)
+        for (String id : arr) {
+            if (id.equals(key)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
