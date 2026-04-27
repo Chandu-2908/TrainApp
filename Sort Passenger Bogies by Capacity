@@ -1,0 +1,46 @@
+public class TrainConsistApp {
+
+    public static void main(String[] args) {
+
+        // Step 1: Create array of capacities
+        int[] capacities = {72, 56, 24, 70, 60};
+
+        System.out.println("Before Sorting:");
+        printArray(capacities);
+
+        // Step 2: Apply Bubble Sort
+        bubbleSort(capacities);
+
+        // Step 3: Display sorted result
+        System.out.println("\nAfter Sorting:");
+        printArray(capacities);
+    }
+
+    // Bubble Sort Method
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+
+        for (int i = 0; i < n - 1; i++) {
+
+            for (int j = 0; j < n - i - 1; j++) {
+
+                // Compare adjacent elements
+                if (arr[j] > arr[j + 1]) {
+
+                    // Swap
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // Helper method to print array
+    public static void printArray(int[] arr) {
+        for (int val : arr) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+    }
+}

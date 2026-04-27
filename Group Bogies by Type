@@ -1,0 +1,51 @@
+class Bogie {
+    String type;
+    int capacity;
+
+    public Bogie(String type, int capacity) {
+        this.type = type;
+        this.capacity = capacity;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public String toString() {
+        return "Capacity: " + capacity;
+    }
+}
+import java.util.*;
+import java.util.stream.*;
+
+public class TrainConsistApp {
+
+    public static void main(String[] args) {
+
+        // Step 1: Create list of bogies
+        List<Bogie> bogieList = new ArrayList<>();
+
+        bogieList.add(new Bogie("Sleeper", 72));
+        bogieList.add(new Bogie("AC Chair", 60));
+        bogieList.add(new Bogie("First Class", 50));
+        bogieList.add(new Bogie("Sleeper", 80));
+        bogieList.add(new Bogie("AC Chair", 65));
+
+        // Step 2: Group bogies by type
+        Map<String, List<Bogie>> groupedBogies = bogieList.stream()
+                .collect(Collectors.groupingBy(Bogie::getType));
+
+        // Step 3: Display grouped result
+        System.out.println("Grouped Bogies by Type:\n");
+
+        for (Map.Entry<String, List<Bogie>> entry : groupedBogies.entrySet()) {
+            System.out.println("Bogie Type: " + entry.getKey());
+            entry.getValue().forEach(b -> System.out.println("   " + b));
+        }
+
+        // Step 4: Verify original list unchanged
+        System.out.println("\nOriginal List:");
+        bogieList.forEach(System.out::println);
+    }
+}
