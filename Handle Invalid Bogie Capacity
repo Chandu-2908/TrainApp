@@ -1,0 +1,26 @@
+class InvalidCapacityException extends Exception {
+
+    public InvalidCapacityException(String message) {
+        super(message);
+    }
+}
+class PassengerBogie {
+    String type;
+    int capacity;
+
+    // Constructor with validation
+    public PassengerBogie(String type, int capacity) throws InvalidCapacityException {
+
+        if (capacity <= 0) {
+            throw new InvalidCapacityException("Capacity must be greater than zero");
+        }
+
+        this.type = type;
+        this.capacity = capacity;
+    }
+
+    @Override
+    public String toString() {
+        return "Bogie Type: " + type + ", Capacity: " + capacity;
+    }
+}
